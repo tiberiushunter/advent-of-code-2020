@@ -28,7 +28,7 @@ Feel free to run through the solutions (note potential spoilers!)
 
 To run the code ensure you have the [.NET 5 SDK][6]
 
-Then from the root directory run the command: `dotnet run`.
+Then from the root directory run the command: `dotnet run`
 
 You'll be presented with a Welcome Screen where you will be prompted to input a day number to run any of the Advent of Code solutions.
 

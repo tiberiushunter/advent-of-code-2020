@@ -32,8 +32,11 @@ namespace advent_of_code_2020
                 case "1":
                     Day1 a = new Day1();
                     break;
+                case "2":
+                    Day2 b = new Day2();
+                    break;
                 default:
-                    Day1 z = new Day1();
+                    Day2 z = new Day2();
                     break;
             }
         }
