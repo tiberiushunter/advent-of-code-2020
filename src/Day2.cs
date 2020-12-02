@@ -94,19 +94,7 @@ namespace advent_of_code_2020
 
                 if (m.Success)
                 {
-                    int count = 0;
-
-                    if (m.Groups[4].Value[Int32.Parse(m.Groups[1].Value) - 1] == m.Groups[3].Value[0])
-                    {
-                        count++;
-                    }
-
-                    if (m.Groups[4].Value[Int32.Parse(m.Groups[2].Value) - 1] == m.Groups[3].Value[0])
-                    {
-                        count++;
-                    }
-
-                    if (count == 1)
+                    if (m.Groups[4].Value[Int32.Parse(m.Groups[1].Value) - 1] == m.Groups[3].Value[0] ^ m.Groups[4].Value[Int32.Parse(m.Groups[2].Value) - 1] == m.Groups[3].Value[0])
                     {
                         numOfValidPasswords++;
                     }
