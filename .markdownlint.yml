@@ -1,2 +1,5 @@
+# Disable line length limit
+MD013: false
+
 # Disable inline HTML
 MD033: false

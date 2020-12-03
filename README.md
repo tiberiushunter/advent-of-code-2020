@@ -28,7 +28,15 @@ Feel free to run through the solutions (note potential spoilers!)
 
 To run the code ensure you have the [.NET 5 SDK][6]
 
-Then from the root directory run the command: `dotnet run`
+Then from the root directory run the command `dotnet restore` to ensure you have the required NuGet packages installed.
+
+Next, we need to set up the UserSecret "AdventOfCode:Session" To do this run the command
+
+`dotnet set "AdventOfCode:Session" "y0ur_s3ss10n_k3y*"`
+
+~~This is used to store your Advent of Code session key to fetch the input directly from the site rather than adding it in yourself.~~ <- *It will do this, eventually...*
+
+Finally, run `dotnet run` to launch the application.
 
 You'll be presented with a Welcome Screen where you will be prompted to input a day number to run any of the Advent of Code solutions.
 
