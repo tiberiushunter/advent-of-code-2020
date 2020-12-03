@@ -32,7 +32,7 @@ Then from the root directory run the command `dotnet restore` to ensure you have
 
 Next, we need to set up the UserSecret "AdventOfCode:Session" To do this run the command
 
-`dotnet set "AdventOfCode:Session" "y0ur_s3ss10n_k3y*"`
+`dotnet user-secrets set "AdventOfCode:Session" "y0ur_s3ss10n_k3y*"`
 
 ~~This is used to store your Advent of Code session key to fetch the input directly from the site rather than adding it in yourself.~~ <- *It will do this, eventually...*
 
