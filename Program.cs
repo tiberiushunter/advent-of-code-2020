@@ -36,34 +36,43 @@ namespace advent_of_code_2020
 ╚═╝  ╚═╝╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝        ╚═════╝ ╚═╝          ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝";
 
             Console.WriteLine(welcomeText);
-            Console.Write("\nChoose Day number to Solve [1-25]\t");
+            Console.Write("\nChoose Day to Solve [1-25]\t");
+            Console.ForegroundColor = ConsoleColor.Green;
+
             string input = Console.ReadLine();
+            int daySelected;
 
-            if (input != string.Empty) //TODO: Sanitise this properly...
+            if (Int32.TryParse(input, out daySelected)) //TODO: Sanitise this properly...
             {
-                Console.WriteLine("Day {0} selected.\n", input);
-            }
-            else
-            {
-                Console.WriteLine("Latest Day Selected\n", input);
+                Console.WriteLine("Day {0} selected.\n", daySelected);
             }
 
-            switch (input)
+            Console.ForegroundColor = ConsoleColor.White;
+
+            switch (input.ToLower())
             {
                 case "1":
-                    var a = new Day1();
+                    new Day1();
                     break;
                 case "2":
-                    var b = new Day2();
+                    new Day2();
                     break;
                 case "3":
-                    var c = new Day3();
+                    new Day3();
                     break;
                 case "4":
-                    var d = new Day4();
+                    new Day4();
+                    break;
+                case "all":
+                    Console.WriteLine("Solving all Days \n");
+                    new Day1();
+                    new Day2();
+                    new Day3();
+                    new Day4();
                     break;
                 default:
-                    var z = new Day4();
+                    Console.WriteLine("Defaulting to Latest Day \n");
+                    new Day4();
                     break;
             }
         }

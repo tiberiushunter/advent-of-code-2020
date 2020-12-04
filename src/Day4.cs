@@ -15,8 +15,8 @@ namespace advent_of_code_2020
             inputArr = input.Split(new string[] { "\n\n" },
                                StringSplitOptions.RemoveEmptyEntries);
 
-            Console.WriteLine("Answer for Day 4 Part A is {0}", partA());
-            Console.WriteLine("Answer for Day 4 Part B is {0}", partB());
+            Console.WriteLine("Day 4 - Part A: {0}", partA());
+            Console.WriteLine("Day 4 - Part B: {0}\n", partB());
         }
 
         /**  --- Day 4: Passport Processing ---
@@ -69,7 +69,6 @@ namespace advent_of_code_2020
         */
         private int partA()
         {
-            //Console.WriteLine(input);
             int count = 0;
             for (int i = 0; i < inputArr.Length; i++)
             {

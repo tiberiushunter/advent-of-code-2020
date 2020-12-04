@@ -9,8 +9,8 @@ namespace advent_of_code_2020
 
         public Day1()
         {
-            Console.WriteLine("Answer for Day 1 Part A is {0}", partA());
-            Console.WriteLine("Answer for Day 1 Part B is {0}", partB());
+            Console.WriteLine("Day 1 - Part A: {0}", partA());
+            Console.WriteLine("Day 1 - Part B: {0}\n", partB());
         }
 
         /** --- Day 1: Report Repair ---

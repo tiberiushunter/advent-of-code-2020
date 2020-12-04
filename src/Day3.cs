@@ -12,8 +12,8 @@ namespace advent_of_code_2020
             // Split the input into an array
             inputArr = input.Split("\n");
 
-            Console.WriteLine("Answer for Day 3 Part A is {0}", partA());
-            Console.WriteLine("Answer for Day 3 Part B is {0}", partB());
+            Console.WriteLine("Day 3 - Part A: {0}", partA());
+            Console.WriteLine("Day 3 - Part B: {0}\n", partB());
         }
 
         /** --- Day 3: Toboggan Trajectory ---
