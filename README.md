@@ -34,7 +34,7 @@ Next, we need to set up the UserSecret "AdventOfCode:Session" To do this run the
 
 `dotnet user-secrets set "AdventOfCode:Session" "y0ur_s3ss10n_k3y*"`
 
-~~This is used to store your Advent of Code session key to fetch the input directly from the site rather than adding it in yourself.~~ <- *It will do this, eventually...*
+This is used to store your Advent of Code session key to fetch the input directly from the site rather than adding it in yourself.
 
 Finally, run `dotnet run` to launch the application.
 

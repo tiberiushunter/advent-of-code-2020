@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using Microsoft.Extensions.Configuration;
 
 namespace advent_of_code_2020
 {
     class Program
     {
+        static string aocSessionKey;
         static void Main(string[] args)
         {
             // Adds the User Secrets
@@ -14,7 +16,16 @@ namespace advent_of_code_2020
             // Loads the Advent of Code session key.
             // This is me playing around with UserSecrets and is going to be used to fetch input straight from AoC
             var secretProvider = config.Providers.First();
-            if (!secretProvider.TryGet("AdventOfCode:Session", out var aocSessionKey)) return;
+            if (!secretProvider.TryGet("AdventOfCode:Session", out aocSessionKey))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Advent of Code session secret not found!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\nHave you run this?");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\tdotnet user-secrets set \"AdventOfCode:Session\" \"y0ur_s3ss10n_k3y*\"");
+                return;
+            }
 
             string welcomeText = @"
  █████╗ ██████╗ ██╗   ██╗███████╗███╗   ██╗████████╗     ██████╗ ███████╗     ██████╗ ██████╗ ██████╗ ███████╗    ██████╗  ██████╗ ██████╗  ██████╗     
@@ -25,12 +36,12 @@ namespace advent_of_code_2020
 ╚═╝  ╚═╝╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝        ╚═════╝ ╚═╝          ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝";
 
             Console.WriteLine(welcomeText);
-            Console.Write("\nChoose an Advent of Code Day number to run [1-25]");
+            Console.Write("\nChoose Day number to Solve [1-25]\t");
             string input = Console.ReadLine();
 
             if (input != string.Empty) //TODO: Sanitise this properly...
             {
-                Console.WriteLine("Day selected: {0}\n", input);
+                Console.WriteLine("Day {0} selected.\n", input);
             }
             else
             {
@@ -54,6 +65,15 @@ namespace advent_of_code_2020
                 default:
                     var z = new Day4();
                     break;
+            }
+        }
+
+        public static string GetInput(int year, int day)
+        {
+            using (var client = new WebClient())
+            {
+                client.Headers.Add(HttpRequestHeader.Cookie, "session=" + Program.aocSessionKey);
+                return client.DownloadString("https://adventofcode.com/" + year + "/day/" + day + "/input").Trim();
             }
         }
     }
