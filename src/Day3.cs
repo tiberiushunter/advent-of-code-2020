@@ -1,4 +1,3 @@
-using System;
 
 namespace advent_of_code_2020
 {
