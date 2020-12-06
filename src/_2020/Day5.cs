@@ -1,15 +1,15 @@
 using System.Linq;
 
-namespace advent_of_code_2020
+namespace AdventOfCode._2020
 {
     class Day5 : BaseDay
     {
-        private readonly string input = Program.GetInput(2020, 5);
-        private int[] seats;
+        private readonly string _input = Program.GetInput(2020, 5);
+        private int[] _seats;
         public Day5()
         {
             // Split the input into an array and calculate the seat IDs
-            SetSeats(input.Trim().Split("\n"));
+            SetSeats(_input.Trim().Split("\n"));
         }
 
         /** --- Day 5: Binary Boarding ---
@@ -52,7 +52,7 @@ namespace advent_of_code_2020
         */
         private protected override string PartA()
         {
-            return seats.Max().ToString();
+            return _seats.Max().ToString();
         }
 
         /** --- Part Two ---
@@ -67,17 +67,17 @@ namespace advent_of_code_2020
         */
         private protected override string PartB()
         {
-            seats = seats.OrderBy(c => c).ToArray();
+            _seats = _seats.OrderBy(c => c).ToArray();
 
-            int emptySeat = Enumerable.Range(seats.First(), seats.Last() - seats.First() + 1)
-                                .Except(seats).ToArray()[0];
+            int emptySeat = Enumerable.Range(_seats.First(), _seats.Last() - _seats.First() + 1)
+                                .Except(_seats).ToArray()[0];
                                 
             return emptySeat.ToString();
         }
 
         private void SetSeats(string[] input)
         {
-            seats = new int[input.Length];
+            _seats = new int[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
@@ -87,7 +87,7 @@ namespace advent_of_code_2020
                 int row = BinarySearchPartition(rowRange, input[i].Substring(0, 7), 'F');
                 int col = BinarySearchPartition(colRange, input[i].Substring(7, 3), 'L');
 
-                seats[i] = (row * 8) + col;
+                _seats[i] = (row * 8) + col;
             }
         }
 

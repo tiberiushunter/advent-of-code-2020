@@ -1,16 +1,16 @@
 using System;
 using System.Linq;
 
-namespace advent_of_code_2020
+namespace AdventOfCode._2020
 {
     class Day1 : BaseDay
     {
-        private readonly string input = Program.GetInput(2020, 1);
-        private int[] arr;
+        private readonly string _input = Program.GetInput(2020, 1);
+        private int[] _arr;
 
         public Day1()
         {
-            arr = input.Split('\n').Select(n => Convert.ToInt32(n)).ToArray();
+            _arr = _input.Split('\n').Select(n => Convert.ToInt32(n)).ToArray();
         }
 
         /** --- Day 1: Report Repair ---
@@ -42,13 +42,13 @@ namespace advent_of_code_2020
         */
         private protected override string PartA()
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < _arr.Length; i++)
             {
-                for (int j = 0; j < arr.Length; j++)
+                for (int j = 0; j < _arr.Length; j++)
                 {
-                    if (arr[i] + arr[j] == 2020)
+                    if (_arr[i] + _arr[j] == 2020)
                     {
-                        return (arr[i] * arr[j]).ToString();
+                        return (_arr[i] * _arr[j]).ToString();
                     }
                 }
             }
@@ -66,15 +66,15 @@ namespace advent_of_code_2020
         */
         private protected override string PartB()
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < _arr.Length; i++)
             {
-                for (int j = 0; j < arr.Length; j++)
+                for (int j = 0; j < _arr.Length; j++)
                 {
-                    for (int k = 0; k < arr.Length; k++)
+                    for (int k = 0; k < _arr.Length; k++)
                     {
-                        if (arr[i] + arr[j] + arr[k] == 2020)
+                        if (_arr[i] + _arr[j] + _arr[k] == 2020)
                         {
-                            return (arr[i] * arr[j] * arr[k]).ToString();
+                            return (_arr[i] * _arr[j] * _arr[k]).ToString();
                         }
                     }
                 }

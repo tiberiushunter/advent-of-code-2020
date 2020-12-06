@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace advent_of_code_2020
+namespace AdventOfCode._2020
 {
     class Day4 : BaseDay
     {
-        private readonly string input = Program.GetInput(2020, 4);
-        private string[] inputArr;
+        private readonly string _input = Program.GetInput(2020, 4);
+        private string[] _inputArr;
         public Day4()
         {
             // Split the input into an array of passports
-            inputArr = input.Split(new string[] { "\n\n" },
+            _inputArr = _input.Split(new string[] { "\n\n" },
                                StringSplitOptions.RemoveEmptyEntries);
         }
 
@@ -67,9 +67,9 @@ namespace advent_of_code_2020
         private protected override string PartA()
         {
             int count = 0;
-            for (int i = 0; i < inputArr.Length; i++)
+            for (int i = 0; i < _inputArr.Length; i++)
             {
-                if (HasAllRequiredFields(inputArr[i]))
+                if (HasAllRequiredFields(_inputArr[i]))
                 {
                     count++;
                 }
@@ -151,12 +151,12 @@ namespace advent_of_code_2020
             int count = 0;
             string[] eclValidArr = new string[7] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
 
-            for (int i = 0; i < inputArr.Length; i++)
+            for (int i = 0; i < _inputArr.Length; i++)
             {
-                if (HasAllRequiredFields(inputArr[i]))
+                if (HasAllRequiredFields(_inputArr[i]))
                 {
                     // Then add the current passport to a dictionary
-                    Dictionary<string, string> d = inputArr[i].Replace("\n", " ").Split(' ')
+                    Dictionary<string, string> d = _inputArr[i].Replace("\n", " ").Split(' ')
                         .Select(value => value.Split(':'))
                         .ToDictionary(pair => pair[0], pair => pair[1]);
 

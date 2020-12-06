@@ -1,7 +1,7 @@
 
 using System;
 
-namespace advent_of_code_2020
+namespace AdventOfCode
 {
     abstract class BaseDay
     {

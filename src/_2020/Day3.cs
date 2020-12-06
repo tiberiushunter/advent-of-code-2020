@@ -1,15 +1,15 @@
 
-namespace advent_of_code_2020
+namespace AdventOfCode._2020
 {
     class Day3 : BaseDay
     {
-        private readonly string input = Program.GetInput(2020, 3);
+        private readonly string _input = Program.GetInput(2020, 3);
 
-        private string[] inputArr;
+        private string[] _inputArr;
         public Day3()
         {
             // Split the input into an array
-            inputArr = input.Split("\n");
+            _inputArr = _input.Split("\n");
         }
 
         /** --- Day 3: Toboggan Trajectory ---
@@ -70,7 +70,7 @@ namespace advent_of_code_2020
         */
         private protected override string PartA()
         {
-            return CalcTree(inputArr, 3, 1).ToString();
+            return CalcTree(_inputArr, 3, 1).ToString();
         }
 
         /** --- Part Two ---
@@ -89,11 +89,11 @@ namespace advent_of_code_2020
         */
         private protected override string PartB()
         {
-            return (CalcTree(inputArr, 1, 1) *
-                CalcTree(inputArr, 3, 1) *
-                CalcTree(inputArr, 5, 1) *
-                CalcTree(inputArr, 7, 1) *
-                CalcTree(inputArr, 1, 2)).ToString();
+            return (CalcTree(_inputArr, 1, 1) *
+                CalcTree(_inputArr, 3, 1) *
+                CalcTree(_inputArr, 5, 1) *
+                CalcTree(_inputArr, 7, 1) *
+                CalcTree(_inputArr, 1, 2)).ToString();
         }
 
         private long CalcTree(string[] inputArr, int x, int y)

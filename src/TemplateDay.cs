@@ -1,9 +1,9 @@
 
-namespace advent_of_code_2020
+namespace AdventOfCode
 {
     class TemplateDay : BaseDay
     {
-        private readonly string input = string.Empty;//Program.GetInput(2020, x);
+        private readonly string _input = string.Empty;//Program.GetInput(2020, x);
 
         public TemplateDay()
         {
@@ -14,14 +14,14 @@ namespace advent_of_code_2020
         */
         private protected override string PartA()
         {
-            return input;
+            return _input;
         }
 
         /** --- Part Two ---
         */
         private protected override string PartB()
         {
-            return input;
+            return _input;
         }
 
     }

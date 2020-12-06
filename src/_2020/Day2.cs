@@ -1,18 +1,18 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace advent_of_code_2020
+namespace AdventOfCode._2020
 {
     class Day2 : BaseDay
     {
-        private readonly string input = Program.GetInput(2020, 2);
-        private string[] inputArr;
-        private Regex regEx;
+        private readonly string _input = Program.GetInput(2020, 2);
+        private string[] _inputArr;
+        private Regex _regEx;
 
         public Day2()
         {
-            inputArr = input.Split('\n');
-            regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)", RegexOptions.Compiled);
+            _inputArr = _input.Split('\n');
+            _regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)", RegexOptions.Compiled);
         }
 
         /** --- Day 2: Password Philosophy ---
@@ -43,9 +43,9 @@ namespace advent_of_code_2020
         {
             int numOfValidPasswords = 0;
 
-            foreach (string str in inputArr)
+            foreach (string str in _inputArr)
             {
-                Match m = regEx.Match(str);
+                Match m = _regEx.Match(str);
 
                 if (m.Success)
                 {
@@ -88,9 +88,9 @@ namespace advent_of_code_2020
         {
             int numOfValidPasswords = 0;
 
-            foreach (string str in inputArr)
+            foreach (string str in _inputArr)
             {
-                Match m = regEx.Match(str);
+                Match m = _regEx.Match(str);
 
                 if (m.Success)
                 {

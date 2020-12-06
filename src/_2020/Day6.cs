@@ -1,17 +1,17 @@
 using System;
 using System.Linq;
 
-namespace advent_of_code_2020
+namespace AdventOfCode._2020
 {
     class Day6 : BaseDay
     {
-        private readonly string input = Program.GetInput(2020, 6);
-        private string[] inputArr;
+        private readonly string _input = Program.GetInput(2020, 6);
+        private string[] _inputArr;
 
         public Day6()
         {
             // Split the input into an array of grups
-            inputArr = input.Split(new string[] { "\n\n" },
+            _inputArr = _input.Split(new string[] { "\n\n" },
                                StringSplitOptions.RemoveEmptyEntries);
         }
 
@@ -58,9 +58,9 @@ namespace advent_of_code_2020
         private protected override string PartA()
         {
             int answerCount = 0;
-            for (int i = 0; i < inputArr.Length; i++)
+            for (int i = 0; i < _inputArr.Length; i++)
             {
-                answerCount += new String(inputArr[i].Replace("\n", "").Distinct().ToArray()).Length;
+                answerCount += new String(_inputArr[i].Replace("\n", "").Distinct().ToArray()).Length;
             }
             return answerCount.ToString();
         }
@@ -101,9 +101,9 @@ namespace advent_of_code_2020
         private protected override string PartB()
         {
             int answerCount = 0;
-            for (int i = 0; i < inputArr.Length; i++)
+            for (int i = 0; i < _inputArr.Length; i++)
             {
-                string repeatedChars = new string(inputArr[i].GroupBy(x => x).Where(y => y.Count() > inputArr[i].Split("\n").Length - 1).Select(z => z.Key).ToArray());
+                string repeatedChars = new string(_inputArr[i].GroupBy(x => x).Where(y => y.Count() > _inputArr[i].Split("\n").Length - 1).Select(z => z.Key).ToArray());
                 answerCount += repeatedChars.Length;
             }
             return answerCount.ToString();

@@ -6,7 +6,7 @@ using System.Net;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 
-namespace advent_of_code_2020
+namespace AdventOfCode
 {
     class Program
     {
@@ -84,7 +84,7 @@ namespace advent_of_code_2020
             Console.ForegroundColor = ConsoleColor.White;
 
             Stopwatch timer = new Stopwatch();
-            Type t = Type.GetType("advent_of_code_2020.Day" + d);
+            Type t = Type.GetType("AdventOfCode._2020.Day" + d);
 
             timer.Start();
 
@@ -122,7 +122,7 @@ namespace advent_of_code_2020
             Console.ForegroundColor = ConsoleColor.White;
 
             List<Type> listOfDays = Assembly.GetExecutingAssembly().GetTypes()
-                      .Where(t => t.Namespace == "advent_of_code_2020")
+                      .Where(t => t.Namespace == "AdventOfCode._2020")
                       .Where(t => t.Name.StartsWith("Day"))
                       .ToList();
 
