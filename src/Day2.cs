@@ -3,14 +3,16 @@ using System.Text.RegularExpressions;
 
 namespace advent_of_code_2020
 {
-    class Day2
+    class Day2 : BaseDay
     {
-        private string input = Program.GetInput(2020, 2);
+        private readonly string input = Program.GetInput(2020, 2);
+        private string[] inputArr;
+        private Regex regEx;
 
         public Day2()
         {
-            Console.WriteLine("Day 2 - Part A: {0}", partA());
-            Console.WriteLine("Day 2 - Part B: {0}\n", partB());
+            inputArr = input.Split('\n');
+            regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)", RegexOptions.Compiled);
         }
 
         /** --- Day 2: Password Philosophy ---
@@ -37,10 +39,8 @@ namespace advent_of_code_2020
 
         How many passwords are valid according to their policies?
         */
-        private int partA()
+        private protected override string PartA()
         {
-            string[] inputArr = input.Split('\n');
-            Regex regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)", RegexOptions.Compiled);
             int numOfValidPasswords = 0;
 
             foreach (string str in inputArr)
@@ -63,7 +63,7 @@ namespace advent_of_code_2020
                     }
                 }
             }
-            return numOfValidPasswords;
+            return numOfValidPasswords.ToString();
         }
 
         /** --- Part Two ---
@@ -84,10 +84,8 @@ namespace advent_of_code_2020
         2-9 c: ccccccccc is invalid: both position 2 and position 9 contain c.
         How many passwords are valid according to the new interpretation of the policies?
         */
-        private int partB()
+        private protected override string PartB()
         {
-            string[] inputArr = input.Split('\n');
-            Regex regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)", RegexOptions.Compiled);
             int numOfValidPasswords = 0;
 
             foreach (string str in inputArr)
@@ -102,7 +100,7 @@ namespace advent_of_code_2020
                     }
                 }
             }
-            return numOfValidPasswords;
+            return numOfValidPasswords.ToString();
         }
     }
 }

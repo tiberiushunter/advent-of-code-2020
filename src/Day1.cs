@@ -3,17 +3,14 @@ using System.Linq;
 
 namespace advent_of_code_2020
 {
-    class Day1
+    class Day1 : BaseDay
     {
-        private string input = Program.GetInput(2020, 1);
+        private readonly string input = Program.GetInput(2020, 1);
         private int[] arr;
 
         public Day1()
         {
             arr = input.Split('\n').Select(n => Convert.ToInt32(n)).ToArray();
-
-            Console.WriteLine("Day 1 - Part A: {0}", partA());
-            Console.WriteLine("Day 1 - Part B: {0}\n", partB());
         }
 
         /** --- Day 1: Report Repair ---
@@ -43,7 +40,7 @@ namespace advent_of_code_2020
 
         Of course, your expense report is much larger. Find the two entries that sum to 2020; what do you get if you multiply them together?
         */
-        public int partA()
+        private protected override string PartA()
         {
             for (int i = 0; i < arr.Length; i++)
             {
@@ -51,12 +48,12 @@ namespace advent_of_code_2020
                 {
                     if (arr[i] + arr[j] == 2020)
                     {
-                        return arr[i] * arr[j];
+                        return (arr[i] * arr[j]).ToString();
                     }
                 }
             }
             // Nothing is found
-            return -1;
+            return string.Empty;
         }
 
         /** --- Part Two ---
@@ -67,7 +64,7 @@ namespace advent_of_code_2020
     
         In your expense report, what is the product of the three entries that sum to 2020?
         */
-        private int partB()
+        private protected override string PartB()
         {
             for (int i = 0; i < arr.Length; i++)
             {
@@ -77,13 +74,13 @@ namespace advent_of_code_2020
                     {
                         if (arr[i] + arr[j] + arr[k] == 2020)
                         {
-                            return arr[i] * arr[j] * arr[k];
+                            return (arr[i] * arr[j] * arr[k]).ToString();
                         }
                     }
                 }
             }
             // Nothing is found
-            return -1;
+            return string.Empty;
         }
     }
 }

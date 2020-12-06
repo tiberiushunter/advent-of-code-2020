@@ -3,18 +3,14 @@ using System.Linq;
 
 namespace advent_of_code_2020
 {
-    class Day5
+    class Day5 : BaseDay
     {
-        private string input = Program.GetInput(2020, 5);
+        private readonly string input = Program.GetInput(2020, 5);
         private int[] seats;
         public Day5()
         {
             // Split the input into an array and calculate the seat IDs
-            setSeats(input.Trim().Split("\n"));
-
-
-            Console.WriteLine("Day 5 - Part A: {0}", partA());
-            Console.WriteLine("Day 5 - Part B: {0}\n", partB());
+            SetSeats(input.Trim().Split("\n"));
         }
 
         /** --- Day 5: Binary Boarding ---
@@ -55,9 +51,9 @@ namespace advent_of_code_2020
         BBFFBBFRLL: row 102, column 4, seat ID 820.
         As a sanity check, look through your list of boarding passes. What is the highest seat ID on a boarding pass?
         */
-        private int partA()
+        private protected override string PartA()
         {
-            return seats.Max();
+            return seats.Max().ToString();
         }
 
         /** --- Part Two ---
@@ -70,17 +66,17 @@ namespace advent_of_code_2020
 
         What is the ID of your seat?
         */
-        private int partB()
+        private protected override string PartB()
         {
             seats = seats.OrderBy(c => c).ToArray();
 
             int emptySeat = Enumerable.Range(seats.First(), seats.Last() - seats.First() + 1)
                                 .Except(seats).ToArray()[0];
                                 
-            return emptySeat;
+            return emptySeat.ToString();
         }
 
-        private void setSeats(string[] input)
+        private void SetSeats(string[] input)
         {
             seats = new int[input.Length];
 

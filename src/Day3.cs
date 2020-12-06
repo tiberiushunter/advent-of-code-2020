@@ -2,18 +2,15 @@ using System;
 
 namespace advent_of_code_2020
 {
-    class Day3
+    class Day3 : BaseDay
     {
-        private string input = Program.GetInput(2020, 3);
+        private readonly string input = Program.GetInput(2020, 3);
 
         private string[] inputArr;
         public Day3()
         {
             // Split the input into an array
             inputArr = input.Split("\n");
-
-            Console.WriteLine("Day 3 - Part A: {0}", partA());
-            Console.WriteLine("Day 3 - Part B: {0}\n", partB());
         }
 
         /** --- Day 3: Toboggan Trajectory ---
@@ -72,9 +69,9 @@ namespace advent_of_code_2020
 
         Starting at the top-left corner of your map and following a slope of right 3 and down 1, how many trees would you encounter?
         */
-        private uint partA()
+        private protected override string PartA()
         {
-            return calcTree(inputArr, 3, 1);
+            return CalcTree(inputArr, 3, 1).ToString();
         }
 
         /** --- Part Two ---
@@ -91,18 +88,18 @@ namespace advent_of_code_2020
 
         What do you get if you multiply together the number of trees encountered on each of the listed slopes?
         */
-        private uint partB()
+        private protected override string PartB()
         {
-            return calcTree(inputArr, 1, 1) *
-                calcTree(inputArr, 3, 1) *
-                calcTree(inputArr, 5, 1) *
-                calcTree(inputArr, 7, 1) *
-                calcTree(inputArr, 1, 2);
+            return (CalcTree(inputArr, 1, 1) *
+                CalcTree(inputArr, 3, 1) *
+                CalcTree(inputArr, 5, 1) *
+                CalcTree(inputArr, 7, 1) *
+                CalcTree(inputArr, 1, 2)).ToString();
         }
 
-        private uint calcTree(string[] inputArr, int x, int y)
+        private long CalcTree(string[] inputArr, int x, int y)
         {
-            uint numOfTrees = 0;
+            int numOfTrees = 0;
 
             for (int i = y; i < inputArr.Length; i += y)
             {

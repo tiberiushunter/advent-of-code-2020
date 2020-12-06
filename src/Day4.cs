@@ -5,18 +5,15 @@ using System.Text.RegularExpressions;
 
 namespace advent_of_code_2020
 {
-    class Day4
+    class Day4 : BaseDay
     {
-        private string input = Program.GetInput(2020, 4);
+        private readonly string input = Program.GetInput(2020, 4);
         private string[] inputArr;
         public Day4()
         {
             // Split the input into an array of passports
             inputArr = input.Split(new string[] { "\n\n" },
                                StringSplitOptions.RemoveEmptyEntries);
-
-            Console.WriteLine("Day 4 - Part A: {0}", partA());
-            Console.WriteLine("Day 4 - Part B: {0}\n", partB());
         }
 
         /** --- Day 4: Passport Processing ---
@@ -67,17 +64,17 @@ namespace advent_of_code_2020
 
         Count the number of valid passports - those that have all required fields. Treat cid as optional. In your batch file, how many passports are valid?
         */
-        private int partA()
+        private protected override string PartA()
         {
             int count = 0;
             for (int i = 0; i < inputArr.Length; i++)
             {
-                if (hasAllRequiredFields(inputArr[i]))
+                if (HasAllRequiredFields(inputArr[i]))
                 {
                     count++;
                 }
             }
-            return count;
+            return count.ToString();
         }
 
         /** --- Part Two ---
@@ -149,14 +146,14 @@ namespace advent_of_code_2020
         Continue to treat cid as optional. 
         In your batch file, how many passports are valid?
         */
-        private int partB()
+        private protected override string PartB()
         {
             int count = 0;
             string[] eclValidArr = new string[7] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
 
             for (int i = 0; i < inputArr.Length; i++)
             {
-                if (hasAllRequiredFields(inputArr[i]))
+                if (HasAllRequiredFields(inputArr[i]))
                 {
                     // Then add the current passport to a dictionary
                     Dictionary<string, string> d = inputArr[i].Replace("\n", " ").Split(' ')
@@ -190,10 +187,10 @@ namespace advent_of_code_2020
                     }
                 }
             }
-            return count;
+            return count.ToString();
         }
 
-        private bool hasAllRequiredFields(string input)
+        private bool HasAllRequiredFields(string input)
         {
             if (input.Contains("byr:") &&
                     input.Contains("iyr:") &&
