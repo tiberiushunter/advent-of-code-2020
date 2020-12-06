@@ -6,9 +6,12 @@ namespace advent_of_code_2020
     class Day1
     {
         private string input = Program.GetInput(2020, 1);
+        private int[] arr;
 
         public Day1()
         {
+            arr = input.Split('\n').Select(n => Convert.ToInt32(n)).ToArray();
+
             Console.WriteLine("Day 1 - Part A: {0}", partA());
             Console.WriteLine("Day 1 - Part B: {0}\n", partB());
         }
@@ -40,10 +43,8 @@ namespace advent_of_code_2020
 
         Of course, your expense report is much larger. Find the two entries that sum to 2020; what do you get if you multiply them together?
         */
-        private int partA()
+        public int partA()
         {
-            int[] arr = input.Split('\n').Select(n => Convert.ToInt32(n)).ToArray();
-
             for (int i = 0; i < arr.Length; i++)
             {
                 for (int j = 0; j < arr.Length; j++)
@@ -68,8 +69,6 @@ namespace advent_of_code_2020
         */
         private int partB()
         {
-            int[] arr = input.Split('\n').Select(n => Convert.ToInt32(n)).ToArray();
-
             for (int i = 0; i < arr.Length; i++)
             {
                 for (int j = 0; j < arr.Length; j++)

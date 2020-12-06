@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Threading;
 using Microsoft.Extensions.Configuration;
 
 namespace advent_of_code_2020
@@ -45,36 +49,23 @@ namespace advent_of_code_2020
             if (Int32.TryParse(input, out daySelected)) //TODO: Sanitise this properly...
             {
                 Console.WriteLine("Day {0} selected.\n", daySelected);
+                Console.ForegroundColor = ConsoleColor.White;
+                Solve(daySelected);
             }
-
-            Console.ForegroundColor = ConsoleColor.White;
-
-            switch (input.ToLower())
+            else
             {
-                case "1":
-                    new Day1();
-                    break;
-                case "2":
-                    new Day2();
-                    break;
-                case "3":
-                    new Day3();
-                    break;
-                case "4":
-                    new Day4();
-                    break;
-                case "all":
-                    Console.WriteLine("Solving all Days \n");
-                    new Day1();
-                    new Day2();
-                    new Day3();
-                    new Day4();
-                    new Day5();
-                    break;
-                default:
-                    Console.WriteLine("Defaulting to Latest Day \n");
-                    new Day5();
-                    break;
+                Console.ForegroundColor = ConsoleColor.White;
+                switch (input.ToLower())
+                {
+                    case "all":
+                        Console.WriteLine("Solving all Days \n");
+                        SolveAll();
+                        break;
+                    default:
+                        Console.WriteLine("Defaulting to Latest Day \n");
+                        new Day5();
+                        break;
+                }
             }
         }
 
@@ -85,6 +76,40 @@ namespace advent_of_code_2020
                 client.Headers.Add(HttpRequestHeader.Cookie, "session=" + Program.aocSessionKey);
                 return client.DownloadString("https://adventofcode.com/" + year + "/day/" + day + "/input").Trim();
             }
+        }
+
+        public static void Solve(int day)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            Type t = Type.GetType("advent_of_code_2020.Day" + day);
+
+            stopwatch.Start();
+            Activator.CreateInstance(t);
+            stopwatch.Stop();
+
+            Console.WriteLine("Solved in {0}ms", stopwatch.ElapsedMilliseconds);
+        }
+
+        public static void SolveAll()
+        {
+            List<Type> listOfDays = Assembly.GetExecutingAssembly().GetTypes()
+                      .Where(t => t.Namespace == "advent_of_code_2020")
+                      .Where(t => t.Name.StartsWith("Day"))
+                      .ToList();
+
+            long totalTime = 0L;
+
+            foreach (Type day in listOfDays)
+            {
+                Stopwatch timer = new Stopwatch();
+
+                timer.Start();
+                Activator.CreateInstance(day);
+                timer.Stop();
+                Console.WriteLine("{0} Solved in {1}ms\n", day.Name, timer.ElapsedMilliseconds);
+                totalTime += timer.ElapsedMilliseconds;
+            }
+            Console.WriteLine("Total Execution Time = {0}ms", totalTime);
         }
     }
 }
