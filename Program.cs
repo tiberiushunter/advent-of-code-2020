@@ -74,7 +74,7 @@ namespace AdventOfCode
         /// </summary>
         /// <remarks>
         /// If the input file doesn't exist locally it'll fetch the input from AoC and store it
-        /// in the /input directory to prevent frequent calls to AoC servers.
+        /// in the <c>/input</c> directory to prevent frequent calls to AoC servers.
         /// </remarks>
         /// <param name="year">Year of AoC input to fetch</param>
         /// <param name="day">Day of AoC input to fetch</param>
@@ -120,7 +120,7 @@ namespace AdventOfCode
 
                 Console.WriteLine("Solved in {0}ms\n", timer.ElapsedMilliseconds);
             }
-            catch (Exception e)
+            catch
             {
                 if (d < 1 || d > 25)
                 {
@@ -132,8 +132,7 @@ namespace AdventOfCode
                 }
                 else
                 {
-                    Console.WriteLine(e.ToString());
-                    // Console.WriteLine("A solution for that day hasn't been completed yet!", Color.Yellow);
+                    Console.WriteLine("A solution for that day hasn't been completed yet!", Color.Yellow);
                 }
             }
         }
