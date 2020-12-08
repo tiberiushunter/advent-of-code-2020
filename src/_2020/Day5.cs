@@ -4,7 +4,7 @@ namespace AdventOfCode._2020
 {
     class Day5 : DayBase
     {
-        private readonly string _input = Program.GetInput(2020, 5);
+        private readonly string _input;
         private int[] _seats;
 
         /// <summary>
@@ -12,7 +12,7 @@ namespace AdventOfCode._2020
         /// </summary>
         public Day5()
         {
-            // Split the input into an array and calculate the seat IDs
+            _input = Program.GetInput(2020, 5);
             SetSeats(_input.Trim().Split("\n"));
         }
 

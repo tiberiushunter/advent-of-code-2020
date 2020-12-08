@@ -5,7 +5,7 @@ namespace AdventOfCode._2020
 {
     class Day2 : DayBase
     {
-        private readonly string _input = Program.GetInput(2020, 2);
+        private readonly string _input;
         private string[] _inputArr;
         private Regex _regEx;
 
@@ -14,6 +14,7 @@ namespace AdventOfCode._2020
         /// </summary>
         public Day2()
         {
+            _input = Program.GetInput(2020, 2);
             _inputArr = _input.Split('\n');
             _regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)", RegexOptions.Compiled);
         }

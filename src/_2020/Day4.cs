@@ -7,7 +7,7 @@ namespace AdventOfCode._2020
 {
     class Day4 : DayBase
     {
-        private readonly string _input = Program.GetInput(2020, 4);
+        private readonly string _input;
         private string[] _inputArr;
 
         /// <summary>
@@ -15,7 +15,8 @@ namespace AdventOfCode._2020
         /// </summary> 
         public Day4()
         {
-            // Split the input into an array of passports
+            _input = Program.GetInput(2020, 4);
+
             _inputArr = _input.Split(new string[] { "\n\n" },
                                StringSplitOptions.RemoveEmptyEntries);
         }

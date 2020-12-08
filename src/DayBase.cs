@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Drawing;
 using Console = Colorful.Console;
 
@@ -7,8 +8,22 @@ namespace AdventOfCode
     {
         public void Solve()
         {
-            Console.WriteLineFormatted("Part 1: {0}", Color.Yellow, Color.Gray, PartA());
-            Console.WriteLineFormatted("Part 2: {0}\n", Color.Yellow, Color.Gray, PartB());
+            Stopwatch timer = new Stopwatch();
+            string result = string.Empty;
+
+            timer.Start();
+            result = PartA();
+            timer.Stop();
+
+            Console.WriteFormatted("Part 1: {0} ", Color.LightGreen, Color.Gray, result);
+            Console.WriteLineFormatted("({0})", Color.LightBlue, Color.Gray, timer.ElapsedMilliseconds + "ms");
+
+            timer.Restart();
+            result = PartB();
+            timer.Stop();
+
+            Console.WriteFormatted("Part 2: {0} ", Color.LightGreen, Color.Gray, result);
+            Console.WriteLineFormatted("({0})\n", Color.LightBlue, Color.Gray, timer.ElapsedMilliseconds + "ms");
         }
         private protected abstract string PartA();
         private protected abstract string PartB();

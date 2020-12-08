@@ -113,21 +113,15 @@ namespace AdventOfCode
         /// <returns>Console output of the solution for both parts along with execution time.</returns>
         public static void SolveDay(int y, int d)
         {
-            Console.WriteLine("=============", Color.Green);
-            Console.WriteLine(" {0} - Day {1}", y, d, Color.Green);
-            Console.WriteLine("=============\n", Color.Green);
+            Console.WriteLine("===============", Color.MediumPurple);
+            Console.WriteLine(" {0} - Day {1}", y, d, Color.HotPink);
+            Console.WriteLine("===============\n", Color.MediumPurple);
 
-            Stopwatch timer = new Stopwatch();
             Type t = Type.GetType("AdventOfCode._" + y + ".Day" + d);
-
-            timer.Start();
-
             try
             {
                 var day = (DayBase)Activator.CreateInstance(t);
                 day.Solve();
-                timer.Stop();
-                Console.WriteLine("Solved in {0}ms\n", timer.ElapsedMilliseconds);
             }
             catch (Exception e)
             {

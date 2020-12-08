@@ -3,7 +3,7 @@ namespace AdventOfCode._2020
 {
     class Day3 : DayBase
     {
-        private readonly string _input = Program.GetInput(2020, 3);
+        private readonly string _input;
 
         private string[] _inputArr;
 
@@ -12,7 +12,7 @@ namespace AdventOfCode._2020
         /// </summary> 
         public Day3()
         {
-            // Split the input into an array
+            _input = Program.GetInput(2020, 3);
             _inputArr = _input.Split("\n");
         }
 

@@ -5,7 +5,7 @@ namespace AdventOfCode._2020
 {
     class Day6 : DayBase
     {
-        private readonly string _input = Program.GetInput(2020, 6);
+        private readonly string _input;
         private string[] _inputArr;
 
         /// <summary>
@@ -13,7 +13,7 @@ namespace AdventOfCode._2020
         /// </summary>
         public Day6()
         {
-            // Split the input into an array of groups
+            _input = Program.GetInput(2020, 6);
             _inputArr = _input.Split(new string[] { "\n\n" },
                                StringSplitOptions.RemoveEmptyEntries);
         }

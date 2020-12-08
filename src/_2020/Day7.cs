@@ -8,7 +8,7 @@ namespace AdventOfCode._2020
 {
     class Day7 : DayBase
     {
-        private readonly string _input = Program.GetInput(2020, 7);
+        private readonly string _input;
         private Regex _regEx = new Regex(@"(\w+ \w+) bags contain ((?:\d+ \w+ \w+ bags?[\,\.] *)*)", RegexOptions.Compiled);
         private List<Bag> _bags = new List<Bag>();
 
@@ -17,6 +17,7 @@ namespace AdventOfCode._2020
         /// </summary>
         public Day7()
         {
+            _input = Program.GetInput(2020, 7);
             SetBags(_input.Trim().Split("\n"));
         }
 
