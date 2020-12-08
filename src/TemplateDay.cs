@@ -1,28 +1,32 @@
-
+using System;
 namespace AdventOfCode
 {
-    class TemplateDay : DayBase
+    class TemplateBase : DayBase
     {
-        private readonly string _input = string.Empty;//Program.GetInput(2020, x);
+        private readonly string _input = Program.GetInput(2020, 8);
 
-        public TemplateDay()
+        /// <summary>
+        /// --- Day 0: xyz ---
+        /// </summary>
+        public TemplateBase()
         {
 
         }
 
-        /** --- Day X: XYZ ---
-        */
+        /// <summary>
+        /// --- Day 0: xyz; Part A ---
+        /// </summary>
         private protected override string PartA()
         {
-            return _input;
+            return string.Empty;
         }
 
-        /** --- Part Two ---
-        */
+        /// <summary>
+        /// --- Day 0: xyz; Part B ---
+        /// </summary>
         private protected override string PartB()
         {
-            return _input;
+            return string.Empty;
         }
-
     }
 }

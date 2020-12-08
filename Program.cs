@@ -56,7 +56,7 @@ namespace AdventOfCode
 
                 if (Int32.TryParse(dayInput, out daySelected))
                 {
-                    SolveDay(daySelected, yearSelected);
+                    SolveDay(yearSelected, daySelected);
                 }
                 else
                 {
@@ -129,7 +129,7 @@ namespace AdventOfCode
                 timer.Stop();
                 Console.WriteLine("Solved in {0}ms\n", timer.ElapsedMilliseconds);
             }
-            catch
+            catch (Exception e)
             {
                 if (d < 1 || d > 25)
                 {
@@ -139,9 +139,8 @@ namespace AdventOfCode
                 {
                     Console.WriteLine("Pick a year between 2015 and 2020", Color.Red);
                 }
-                else
-                {
-                    Console.WriteLine("A solution for that day hasn't been completed yet!", Color.Yellow);
+                else {
+                    Console.WriteLine(e.ToString());
                 }
             }
         }
