@@ -15,15 +15,15 @@ namespace AdventOfCode
             result = PartA();
             timer.Stop();
 
-            Console.WriteFormatted("Part 1: {0} ", Color.LightGreen, Color.Gray, result);
-            Console.WriteLineFormatted("({0})", Color.LightBlue, Color.Gray, timer.ElapsedMilliseconds + "ms");
+            Console.WriteFormatted("Part 1: {0} ", Color.LightBlue, Color.Gray, result);
+            Console.WriteLineFormatted("({0})", Color.LightGreen, Color.Gray, timer.ElapsedMilliseconds + "ms");
 
             timer.Restart();
             result = PartB();
             timer.Stop();
 
-            Console.WriteFormatted("Part 2: {0} ", Color.LightGreen, Color.Gray, result);
-            Console.WriteLineFormatted("({0})\n", Color.LightBlue, Color.Gray, timer.ElapsedMilliseconds + "ms");
+            Console.WriteFormatted("Part 2: {0} ", Color.LightBlue, Color.Gray, result);
+            Console.WriteLineFormatted("({0})\n", Color.LightGreen, Color.Gray, timer.ElapsedMilliseconds + "ms");
         }
         private protected abstract string PartA();
         private protected abstract string PartB();

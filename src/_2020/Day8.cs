@@ -20,37 +20,10 @@ namespace AdventOfCode._2020
         /// </summary>
         private protected override string PartA()
         {
-            int acc = 0;
-            int line = 0;
-            HashSet<int> visited = new HashSet<int>();
+            var gameBoy = new GameBoy(_input);
+            gameBoy.Boot();
+            int acc = gameBoy.Acc;
 
-            while (true)
-            {
-                if (visited.Contains(line))
-                {
-                    break;
-                }
-                else
-                {
-                    visited.Add(line);
-                }
-                string[] command = _input[line].Split(" ");
-                switch (command[0])
-                {
-                    case "acc":
-                        acc = acc + Int32.Parse(command[1]);
-                        line++;
-                        break;
-
-                    case "jmp":
-                        line = line + Int32.Parse(command[1]);
-                        break;
-
-                    case "nop":
-                        line++;
-                        break;
-                }
-            }
             return acc.ToString();
         }
 
@@ -60,9 +33,7 @@ namespace AdventOfCode._2020
         private protected override string PartB()
         {
             int acc = 0;
-            bool endOfProgram = false;
 
-            string[] originalInput = (string[])_input.Clone();
             string[] modifiedInput = (string[])_input.Clone();
 
             for (int i = 0; i < modifiedInput.Length; i++)
@@ -80,11 +51,46 @@ namespace AdventOfCode._2020
                     continue;
                 }
 
-                HashSet<int> visited = new HashSet<int>();
-                int tempAcc = 0;
-                int line = 0;
+                var gameBoy = new GameBoy(modifiedInput);
+                gameBoy.Boot();
 
-                while (!endOfProgram)
+                if (gameBoy.BootComplete)
+                {
+                    acc = gameBoy.Acc;
+                    break;
+                }
+
+                modifiedInput = (string[])_input.Clone();
+            }
+            return acc.ToString();
+        }
+
+        /// <summary>
+        /// Class for the GameBoy object
+        /// </summary>
+        internal class GameBoy
+        {
+            private string[] bootCode;
+            private int acc = 0;
+            private bool bootComplete = false;
+            public GameBoy(string[] input)
+            {
+                this.BootCode = input;
+            }
+
+            public string[] BootCode { get => bootCode; set => bootCode = value; }
+            public bool BootComplete { get => bootComplete; set => bootComplete = value; }
+            public int Acc { get => acc; set => acc = value; }
+
+            /// <summary>
+            /// Attempts to boot the GameBoy using the execution instructions
+            /// </summary>
+            public void Boot()
+            {
+                int line = 0;
+                HashSet<int> visited = new HashSet<int>();
+
+                while (!bootComplete)
                 {
                     if (visited.Contains(line))
                     {
@@ -95,23 +101,22 @@ namespace AdventOfCode._2020
                         visited.Add(line);
                     }
 
-                    if (line >= modifiedInput.Length)
+                    if (line >= BootCode.Length)
                     {
-                        acc = tempAcc;
-                        endOfProgram = true;
+                        bootComplete = true;
                     }
                     else
                     {
-                        string[] command = modifiedInput[line].Split(" ");
+                        string[] command = bootCode[line].Split(" ");
                         switch (command[0])
                         {
                             case "acc":
-                                tempAcc = tempAcc + Int32.Parse(command[1]);
+                                Accumulate(Int32.Parse(command[1]));
                                 line++;
                                 break;
 
                             case "jmp":
-                                line = line + Int32.Parse(command[1]);
+                                line = Jump(Int32.Parse(command[1]), line);
                                 break;
 
                             case "nop":
@@ -120,9 +125,17 @@ namespace AdventOfCode._2020
                         }
                     }
                 }
-                modifiedInput = (string[])originalInput.Clone();
             }
-            return acc.ToString();
+
+            private void Accumulate(int value)
+            {
+                Acc += value;
+            }
+
+            private int Jump(int value, int line)
+            {
+                return value += line;
+            }
         }
     }
 }
