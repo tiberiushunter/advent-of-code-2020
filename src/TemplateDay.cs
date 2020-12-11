@@ -1,4 +1,5 @@
 using System;
+
 namespace AdventOfCode
 {
     class TemplateBase : DayBase
