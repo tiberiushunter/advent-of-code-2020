@@ -55,26 +55,32 @@ namespace AdventOfCode._2020
             _adapterBranches = new Dictionary<int, long>();
             _adapterBranches[_adapterJolts.Last()] = 0;
 
-            long numOfArrangements = 0;
+            long numOfBranches = 0;
             int i = 0;
 
             while (_adapterJolts[i] <= 3)
             {
-                numOfArrangements += 1 + Branch(_adapterJolts, i);
+                numOfBranches += 1 + CalcTotalBranches(_adapterJolts, i);
                 i++;
             }
 
-            return numOfArrangements.ToString();
+            return numOfBranches.ToString();
         }
-        private long Branch(int[] adapters, int currIndex)
+
+        /// <summary>
+        /// Recursively creates the different branches and keeps track of the count.
+        /// </summary>
+        /// <remarks>
+        /// Cycles through each of the three types of valid arrangements (1, 2, 3 jolts) and 
+        /// tracks how many valid branches lead to the required jolts.
+        /// </remarks>
+        /// <param name="adapters">Array of adapters.</param>
+        /// <param name="currIndex">Current Index in the list of adapters.</param>
+        /// <returns>The count of valid branches</returns>
+        private long CalcTotalBranches(int[] adapters, int currIndex)
         {
             int jolt = adapters[currIndex];
             long count = 0;
-
-            if (_adapterBranches.ContainsKey(jolt))
-            {
-                return _adapterBranches[jolt];
-            }
 
             for (int i = currIndex + 1; i < adapters.Length && adapters[i] - jolt <= 3; i++)
             {
@@ -84,9 +90,10 @@ namespace AdventOfCode._2020
                 }
                 else
                 {
-                    count += Branch(adapters, i) + 1;
+                    count += CalcTotalBranches(adapters, i) + 1;
                 }
             }
+            
             _adapterBranches[jolt] = count - 1;
 
             return _adapterBranches[jolt];
