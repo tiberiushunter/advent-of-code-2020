@@ -7,18 +7,14 @@ namespace AdventOfCode._2020
 {
     class Day4 : DayBase
     {
-        private readonly string _input;
-        private string[] _inputArr;
+        private readonly string[] _input;
 
         /// <summary>
         /// --- Day 4: Passport Processing ---
         /// </summary> 
         public Day4()
         {
-            _input = Program.GetInput(2020, 4);
-
-            _inputArr = _input.Split(new string[] { "\n\n" },
-                               StringSplitOptions.RemoveEmptyEntries);
+            _input = Program.GetInput(2020, 4).Split(new string[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         /// <summary>
@@ -27,9 +23,9 @@ namespace AdventOfCode._2020
         private protected override string PartA()
         {
             int count = 0;
-            for (int i = 0; i < _inputArr.Length; i++)
+            for (int i = 0; i < _input.Length; i++)
             {
-                if (HasAllRequiredFields(_inputArr[i]))
+                if (HasAllRequiredFields(_input[i]))
                 {
                     count++;
                 }
@@ -45,12 +41,12 @@ namespace AdventOfCode._2020
             int count = 0;
             string[] eclValidArr = new string[7] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
 
-            for (int i = 0; i < _inputArr.Length; i++)
+            for (int i = 0; i < _input.Length; i++)
             {
-                if (HasAllRequiredFields(_inputArr[i]))
+                if (HasAllRequiredFields(_input[i]))
                 {
                     // Then add the current passport to a dictionary
-                    Dictionary<string, string> d = _inputArr[i].Replace("\n", " ").Split(' ')
+                    Dictionary<string, string> d = _input[i].Replace("\n", " ").Split(' ')
                         .Select(value => value.Split(':'))
                         .ToDictionary(pair => pair[0], pair => pair[1]);
 
@@ -58,14 +54,14 @@ namespace AdventOfCode._2020
                     int iyr = Int32.Parse(d["iyr"]);
                     int eyr = Int32.Parse(d["eyr"]);
 
+                    Int32.TryParse(d["hgt"].Substring(0, d["hgt"].Length - 2), out int hgt);
+
                     if (byr >= 1920 && byr <= 2002 &&
                         iyr >= 2010 && iyr <= 2020 &&
                         eyr >= 2020 && eyr <= 2030)
                     {
-                        if (d["hgt"].EndsWith("cm") &&
-                            (Int32.Parse(d["hgt"].Substring(0, d["hgt"].Length - 2)) >= 150 && Int32.Parse(d["hgt"].Substring(0, d["hgt"].Length - 2)) <= 193) ||
-                            d["hgt"].EndsWith("in") &&
-                            (Int32.Parse(d["hgt"].Substring(0, d["hgt"].Length - 2)) >= 59 && Int32.Parse(d["hgt"].Substring(0, d["hgt"].Length - 2)) <= 76))
+                        if (d["hgt"].EndsWith("cm") && (hgt >= 150 && hgt <= 193) ||
+                            d["hgt"].EndsWith("in") && (hgt >= 59 && hgt <= 76))
                         {
                             if (Regex.Match(d["hcl"], "^#(?:[0-9a-fA-F]{3}){1,2}$").Success)
                             {

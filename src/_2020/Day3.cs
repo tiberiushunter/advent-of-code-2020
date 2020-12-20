@@ -3,17 +3,14 @@ namespace AdventOfCode._2020
 {
     class Day3 : DayBase
     {
-        private readonly string _input;
-
-        private string[] _inputArr;
+        private readonly string[] _input;
 
         /// <summary>
         /// --- Day 3: Toboggan Trajectory ---
         /// </summary> 
         public Day3()
         {
-            _input = Program.GetInput(2020, 3);
-            _inputArr = _input.Split("\n");
+            _input = Program.GetInput(2020, 3).Split("\n");
         }
 
         /// <summary>
@@ -21,7 +18,7 @@ namespace AdventOfCode._2020
         /// </summary>
         private protected override string PartA()
         {
-            return CalcTree(_inputArr, 3, 1).ToString();
+            return CalcTree(_input, 3, 1).ToString();
         }
 
         /// <summary>
@@ -29,22 +26,22 @@ namespace AdventOfCode._2020
         /// </summary>
         private protected override string PartB()
         {
-            return (CalcTree(_inputArr, 1, 1) *
-                CalcTree(_inputArr, 3, 1) *
-                CalcTree(_inputArr, 5, 1) *
-                CalcTree(_inputArr, 7, 1) *
-                CalcTree(_inputArr, 1, 2)).ToString();
+            return (CalcTree(_input, 1, 1) *
+                CalcTree(_input, 3, 1) *
+                CalcTree(_input, 5, 1) *
+                CalcTree(_input, 7, 1) *
+                CalcTree(_input, 1, 2)).ToString();
         }
 
-        private long CalcTree(string[] inputArr, int x, int y)
+        private long CalcTree(string[] input, int x, int y)
         {
             int numOfTrees = 0;
 
-            for (int i = y; i < inputArr.Length; i += y)
+            for (int i = y; i < input.Length; i += y)
             {
-                int mod = (x * i) % (inputArr[i - 1].Length);
+                int mod = (x * i) % (input[i - 1].Length);
 
-                if (inputArr[i][mod] == '#')
+                if (input[i][mod] == '#')
                 {
                     numOfTrees++;
                 }

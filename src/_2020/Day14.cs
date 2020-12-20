@@ -160,9 +160,9 @@ namespace AdventOfCode._2020
                             // Result doesn't get used here, it's used to recursively find the memory addresses.
                             result = CalculateMemoryAddresses(0, floatPositions, result);
 
-                            for (int g = 0; g < memAddresses.Count; g++)
+                            for (int h = 0; h < memAddresses.Count; h++)
                             {
-                                _memory[memAddresses.ElementAt(g)] = GetBitArrayFromInt36(value);
+                                _memory[memAddresses.ElementAt(h)] = GetBitArrayFromInt36(value);
                             }
                         }
                     }

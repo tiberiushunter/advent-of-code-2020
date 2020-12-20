@@ -24,7 +24,7 @@ namespace AdventOfCode._2020
         {
             for (int i = 0; i < _arr.Length; i++)
             {
-                for (int j = 0; j < _arr.Length; j++)
+                for (int j = 1; j < _arr.Length; j++)
                 {
                     if (_arr[i] + _arr[j] == 2020)
                     {
@@ -43,9 +43,9 @@ namespace AdventOfCode._2020
         {
             for (int i = 0; i < _arr.Length; i++)
             {
-                for (int j = 0; j < _arr.Length; j++)
+                for (int j = 1; j < _arr.Length; j++)
                 {
-                    for (int k = 0; k < _arr.Length; k++)
+                    for (int k = 2; k < _arr.Length; k++)
                     {
                         if (_arr[i] + _arr[j] + _arr[k] == 2020)
                         {

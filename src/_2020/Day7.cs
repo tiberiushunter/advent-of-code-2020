@@ -114,6 +114,7 @@ namespace AdventOfCode._2020
                 // Empty the list for the next loop.
                 currentLevelBags = new List<Bag>();
             }
+            
             return bagCount.ToString();
         }
 
@@ -128,15 +129,15 @@ namespace AdventOfCode._2020
                 Match m = _regEx.Match(line);
                 if (m.Success)
                 {
-                    string[] innerBags = m.Groups[2].ToString().Split(new char[] { ',', '.' }, StringSplitOptions.RemoveEmptyEntries);
-                    List<Bag> innerBagsList = new List<Bag>();
+                    string[] innerBags = m.Groups[2].Value.Split(new char[] { ',', '.' }, StringSplitOptions.RemoveEmptyEntries);
+                    List<Bag> innerBagsList = new List<Bag>(innerBags.Length);
 
                     for (int i = 0; i < innerBags.Length; i++)
                     {
                         string[] innerBagDetails = innerBags[i].Trim().Split(" ");
                         innerBagsList.Add(new Bag(Int32.Parse(innerBagDetails[0]), innerBagDetails[1] + " " + innerBagDetails[2]));
                     }
-                    _bags.Add(new Bag(m.Groups[1].ToString(), innerBagsList));
+                    _bags.Add(new Bag(m.Groups[1].Value, innerBagsList));
                 }
             }
         }

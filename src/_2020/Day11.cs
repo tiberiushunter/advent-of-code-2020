@@ -333,8 +333,6 @@ namespace AdventOfCode._2020
                         return count;
                     }
                     break;
-                default:
-                    break;
             }
 
             if (CoordsInBounds(x, y))
