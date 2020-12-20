@@ -24,55 +24,6 @@ namespace AdventOfCode._2020
         }
 
         /// <summary>
-        /// Formats the intital input into the various collections
-        /// </summary>
-        private void FormatInput()
-        {
-            _fields = new Dictionary<string, int[]>();
-            _myTicket = new int[20];
-            _nearbyTickets = new List<int[]>();
-
-
-            // Start with the fields
-            string[] rawFields = _input[0].Split("\n");
-            for (int i = 0; i < rawFields.Length; i++)
-            {
-                Match m = _regexFields.Match(rawFields[i]);
-                if (m.Success)
-                {
-                    int startA = Int32.Parse(m.Groups[2].Value);
-                    int endA = Int32.Parse(m.Groups[3].Value);
-
-                    int startB = Int32.Parse(m.Groups[4].Value);
-                    int endB = Int32.Parse(m.Groups[5].Value);
-
-                    int[] range = Enumerable.Range(startA, endA - startA + 1)
-                                    .Concat(Enumerable.Range(startB, endB - startB + 1))
-                                    .ToArray();
-
-                    _fields.Add(m.Groups[1].Value, range);
-                }
-            }
-
-            // Next to My Ticket
-            _myTicket = _input[1].Split("\n")[1]
-                            .Split(",")
-                            .Select(n => Convert.ToInt32(n))
-                            .ToArray();
-
-            // Finally the Nearby Tickets
-            string[] rawNearbyTickets = _input[2].Split("\n");
-
-            for (int i = 1; i < rawNearbyTickets.Length; i++)
-            {
-                _nearbyTickets.Add(rawNearbyTickets[i]
-                            .Split(",")
-                            .Select(n => Convert.ToInt32(n))
-                            .ToArray());
-            }
-        }
-
-        /// <summary>
         /// --- Day 16: Ticket Translation; Part A ---
         /// </summary>
         private protected override string PartA()
@@ -145,6 +96,54 @@ namespace AdventOfCode._2020
             }
 
             return answer.ToString();
+        }
+
+        /// <summary>
+        /// Formats the intital input into the various collections
+        /// </summary>
+        private void FormatInput()
+        {
+            _fields = new Dictionary<string, int[]>();
+            _myTicket = new int[20];
+            _nearbyTickets = new List<int[]>();
+
+            // Start with the fields
+            string[] rawFields = _input[0].Split("\n");
+            for (int i = 0; i < rawFields.Length; i++)
+            {
+                Match m = _regexFields.Match(rawFields[i]);
+                if (m.Success)
+                {
+                    int startA = Int32.Parse(m.Groups[2].Value);
+                    int endA = Int32.Parse(m.Groups[3].Value);
+
+                    int startB = Int32.Parse(m.Groups[4].Value);
+                    int endB = Int32.Parse(m.Groups[5].Value);
+
+                    int[] range = Enumerable.Range(startA, endA - startA + 1)
+                                    .Concat(Enumerable.Range(startB, endB - startB + 1))
+                                    .ToArray();
+
+                    _fields.Add(m.Groups[1].Value, range);
+                }
+            }
+
+            // Next to My Ticket
+            _myTicket = _input[1].Split("\n")[1]
+                            .Split(",")
+                            .Select(n => Convert.ToInt32(n))
+                            .ToArray();
+
+            // Finally the Nearby Tickets
+            string[] rawNearbyTickets = _input[2].Split("\n");
+
+            for (int i = 1; i < rawNearbyTickets.Length; i++)
+            {
+                _nearbyTickets.Add(rawNearbyTickets[i]
+                            .Split(",")
+                            .Select(n => Convert.ToInt32(n))
+                            .ToArray());
+            }
         }
 
         /// <summary>
