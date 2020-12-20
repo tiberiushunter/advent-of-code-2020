@@ -9,7 +9,7 @@ namespace AdventOfCode._2020
     class Day7 : DayBase
     {
         private readonly string _input;
-        private Regex _regEx = new Regex(@"(\w+ \w+) bags contain ((?:\d+ \w+ \w+ bags?[\,\.] *)*)", RegexOptions.Compiled);
+        private readonly Regex _regEx = new Regex(@"(\w+ \w+) bags contain ((?:\d+ \w+ \w+ bags?[\,\.] *)*)");
         private List<Bag> _bags = new List<Bag>();
 
         /// <summary>

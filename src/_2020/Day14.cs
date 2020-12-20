@@ -11,7 +11,8 @@ namespace AdventOfCode._2020
         private readonly string[] _input;
         private BitArray _bAMaskTrue, _bAMaskFalse, _bAMaskFloating;
         private Dictionary<long, BitArray> _memory; // Full state of Memory
-        private Regex maskRegex,  memRegex;
+        private readonly Regex _maskRegex = new Regex(@"mask = ([01X]+)");
+        private readonly Regex _memRegex = new Regex(@"mem\[([0-9]+)\] = ([0-9]+)");
 
         HashSet<long> memAddresses = new HashSet<long>();
 
@@ -26,9 +27,6 @@ namespace AdventOfCode._2020
             _bAMaskTrue = new BitArray(36);
             _bAMaskFalse = new BitArray(36);
             _bAMaskFloating = new BitArray(36);
-
-            maskRegex = new Regex(@"mask = ([01X]+)");
-            memRegex = new Regex(@"mem\[([0-9]+)\] = ([0-9]+)");
         }
 
         /// <summary>
@@ -42,7 +40,7 @@ namespace AdventOfCode._2020
             for (int i = 0; i < _input.Length; i++)
             {
                 // Firstly we calculate the current mask
-                Match matchMask = maskRegex.Match(_input[i]);
+                Match matchMask = _maskRegex.Match(_input[i]);
                 if (matchMask.Success)
                 {
                     for (int j = 0; j < matchMask.Groups[1].Length; j++)
@@ -71,7 +69,7 @@ namespace AdventOfCode._2020
                     }
                     else
                     {
-                        Match matchMem = memRegex.Match(_input[j]);
+                        Match matchMem = _memRegex.Match(_input[j]);
 
                         if (matchMem.Success)
                         {
@@ -110,7 +108,7 @@ namespace AdventOfCode._2020
             for (int i = 0; i < _input.Length; i++)
             {
                 // Firstly we calculate the current mask
-                Match matchMask = maskRegex.Match(_input[i]);
+                Match matchMask = _maskRegex.Match(_input[i]);
 
                 List<int> floatPositions = new List<int>();
 
@@ -146,7 +144,7 @@ namespace AdventOfCode._2020
                     }
                     else
                     {
-                        Match matchMem = memRegex.Match(_input[j]);
+                        Match matchMem = _memRegex.Match(_input[j]);
 
                         if (matchMem.Success)
                         {

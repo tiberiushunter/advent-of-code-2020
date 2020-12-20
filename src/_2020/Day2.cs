@@ -7,7 +7,7 @@ namespace AdventOfCode._2020
     {
         private readonly string _input;
         private string[] _inputArr;
-        private Regex _regEx;
+        private readonly Regex _regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)");
 
         /// <summary>
         /// --- Day 2: Password Philosophy ---
@@ -16,7 +16,6 @@ namespace AdventOfCode._2020
         {
             _input = Program.GetInput(2020, 2);
             _inputArr = _input.Split('\n');
-            _regEx = new Regex(@"(\d+)-(\d+) (.): (\w+)", RegexOptions.Compiled);
         }
 
         /// <summary>
