@@ -23,6 +23,9 @@ namespace AdventOfCode._2020
             _input = Program.GetInput(2020, 16).Split("\n\n");
         }
 
+        /// <summary>
+        /// Formats the intital input into the various collections
+        /// </summary>
         private void FormatInput()
         {
             _fields = new Dictionary<string, int[]>();
@@ -144,6 +147,10 @@ namespace AdventOfCode._2020
             return answer.ToString();
         }
 
+        /// <summary>
+        /// Removes all of the invalid tickets from the initial input.
+        /// </summary>
+        /// <returns>Error rate (sum of all the invalid values).</returns>
         private int RemoveInvalidTickets()
         {
             int errorRate = 0;
