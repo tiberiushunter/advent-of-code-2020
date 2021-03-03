@@ -91,9 +91,24 @@ namespace AdventOfCode
                     using (var client = new WebClient())
                     {
                         client.Headers.Add(HttpRequestHeader.Cookie, "session=" + Program.aocSessionKey);
+                        Byte[] fileOutput;
+                        try
+                        {
+                            fileOutput = new UTF8Encoding(true).GetBytes(client.DownloadString("https://adventofcode.com/" + y + "/day/" + d + "/input").Trim());
+                        }
+                        catch (WebException we)
+                        {
+                            if (((HttpWebResponse)we.Response).StatusCode == HttpStatusCode.BadRequest)
+                            {
+                                fileOutput = Encoding.UTF8.GetBytes("That didn't quite work... Did you set your session variable correctly?\n\n" + we.Message);
+                            }
+                            else
+                            {
+                                fileOutput = Encoding.UTF8.GetBytes("That didn't quite work...\n\n" + we.Message);
+                            }
+                        }
 
-                        Byte[] input = new UTF8Encoding(true).GetBytes(client.DownloadString("https://adventofcode.com/" + y + "/day/" + d + "/input").Trim());
-                        fs.Write(input, 0, input.Length);
+                        fs.Write(fileOutput, 0, fileOutput.Length);
                     }
                 }
             }
@@ -133,7 +148,8 @@ namespace AdventOfCode
                 {
                     Console.WriteLine("Pick a year between 2015 and 2020", Color.Red);
                 }
-                else {
+                else
+                {
                     Console.WriteLine(e.ToString());
                 }
             }
