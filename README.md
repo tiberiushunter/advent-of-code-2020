@@ -31,7 +31,11 @@ To run the code ensure you have the [.NET 5 SDK][.net-sdk]
 
 Then from the root directory, run the command `dotnet restore` to ensure you have the required NuGet packages installed.
 
-Next, we need to set up the UserSecret "AdventOfCode:Session" To do this run the command:
+Next, grab your Advent of Code session key. In Chrome this can be found under the Application tab in DevTools as seen below: 
+
+![AoCSession](https://user-images.githubusercontent.com/10655940/109741093-4c5e7f80-7bc4-11eb-9e58-e463c64258a5.png)
+
+Once you've got this session token, you can add it to the UserSecrets with the name "AdventOfCode:Session" with the below command:
 
 `dotnet user-secrets set "AdventOfCode:Session" "y0ur_s3ss10n_k3y*"`
 
